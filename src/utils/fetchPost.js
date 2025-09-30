@@ -5,7 +5,7 @@ export const fetchPost = async (topic) => {
 
   const { title, about } = topic;
 
-  const prompt = `Write a detailed, friendly, and engaging blog post on the topic "${title}". Cover the following points: ${about}. Include practical examples and explanations where relevant. The post should be approximately 800-1000 words long. Format the output in Markdown.`;
+  const prompt = `Write a detailed, friendly, and engaging blog post on the topic "${title}". Cover the following points: ${about}. Include practical examples and explanations where relevant. The post should be approximately 1500-2000 words long. Format the output in Markdown.`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -24,7 +24,7 @@ export const fetchPost = async (topic) => {
           },
           { role: "user", content: prompt },
         ],
-        max_tokens: 2000,
+        max_tokens: 3000,
         temperature: 0.7,
       }),
     });
