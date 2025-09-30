@@ -9,40 +9,104 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				text-align: center;
+				padding: 2rem 0;
+				background: var(--card-gradient);
+				border-radius: 20px;
+				margin: 2rem 0;
+				border: 1px solid rgba(var(--purple-200), 0.5);
+				box-shadow: var(--card-shadow);
+			}
+			.hero h1 {
+				color: var(--primary-dark);
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+			.content-card {
+				background: rgba(255, 255, 255, 0.7);
+				border-radius: 12px;
+				padding: 1.5rem;
+				margin: 1.5rem 0;
+				border: 1px solid rgba(var(--purple-200), 0.3);
+				box-shadow: var(--box-shadow);
+				backdrop-filter: blur(5px);
+			}
+			.content-card:hover {
+				border-color: rgba(var(--accent), 0.4);
+				transition: border-color 0.2s ease;
+			}
+			a {
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 500;
+			}
+			a:hover {
+				color: var(--accent-dark);
+				text-decoration: underline;
+			}
+			code {
+				background: rgba(var(--purple-100), 0.8);
+				color: var(--primary-dark);
+				font-weight: 500;
+			}
+			ul {
+				background: rgba(var(--blue-50), 0.5);
+				border-radius: 8px;
+				padding: 1rem 1.5rem;
+				border-left: 4px solid var(--accent);
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<div class="hero">
+				<h1>🌊 Welcome to Synthwave</h1>
+				<p style="font-size: 1.1rem; color: rgba(var(--gray-dark), 0.8);">
+					Where AI meets creativity in the digital frontier
+				</p>
+			</div>
+			<div class="content-card">
+				<h2 style="color: var(--primary-dark); margin-bottom: 1rem;">About Synthwave</h2>
+				<p>
+					Hey there! I'm <strong>Siyabonga Lukhele</strong>, but you might know me as <strong>siyabuilds</strong>. 
+					I created Synthwave because I believe we're living in an extraordinary time where AI isn't just 
+					changing how we work—it's revolutionizing how we think, create, and share ideas.
+				</p>
+			</div>
+			<div class="content-card">
+				<h3 style="color: var(--accent); margin-bottom: 1rem;">Why AI-Powered Blogging?</h3>
+				<p>
+					Traditional blogging has its limits. But when you combine human creativity with AI's vast 
+					knowledge and processing power, magic happens. Synthwave is my experiment in pushing the 
+					boundaries of what's possible when we collaborate with AI to create compelling, insightful, 
+					and genuinely helpful content.
+				</p>
+			</div>
+			<div class="content-card">
+				<h3 style="color: var(--secondary); margin-bottom: 1rem;">What You'll Find Here</h3>
+				<ul>
+					<li>Deep dives into AI tools and technologies that actually matter</li>
+					<li>Creative experiments at the intersection of code and imagination</li>
+					<li>Practical insights from building with cutting-edge tech</li>
+					<li>Behind-the-scenes looks at how AI can enhance human creativity</li>
+					<li>Honest takes on the future we're building together</li>
+				</ul>
+			</div>
+			<div class="content-card">
+				<h3 style="color: var(--accent-dark); margin-bottom: 1rem;">Join the Journey</h3>
+				<p>
+					Whether you're a developer, creator, or just someone curious about where technology is 
+					heading, Synthwave is your window into the future we're building. Every post here is 
+					crafted with AI assistance but driven by human vision and experience.
+				</p>
+				<p>
+					Ready to explore? Check out my <a href="/blog">latest posts</a> or learn more 
+					<a href="/about">about me and this project</a>.
+				</p>
+			</div>
 		</main>
 		<Footer />
 	</body>

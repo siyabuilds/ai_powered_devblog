@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
@@ -8,7 +7,7 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate } = Astro.props;
 ---
 
 <html lang="en">
@@ -20,37 +19,69 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				max-width: 100%;
 				margin: 0;
 			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
 			.prose {
 				width: 720px;
 				max-width: calc(100% - 2em);
 				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				padding: 2em 1em;
+				color: rgba(var(--gray-dark), 0.9);
 			}
 			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
+				margin-bottom: 2em;
+				padding: 2em;
 				text-align: center;
-				line-height: 1;
+				background: var(--card-gradient);
+				border-radius: 16px;
+				border: 1px solid rgba(var(--purple-200), 0.5);
+				box-shadow: var(--card-shadow);
+				backdrop-filter: blur(10px);
 			}
 			.title h1 {
-				margin: 0 0 0.5em 0;
+				margin: 0 0 1em 0;
+				color: var(--primary-dark);
+				font-size: 2.5rem;
+				line-height: 1.2;
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: rgba(var(--gray-dark), 0.7);
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				font-size: 0.9rem;
 			}
 			.last-updated-on {
 				font-style: italic;
+				color: rgba(var(--gray-dark), 0.6);
+				margin-top: 0.5em;
+			}
+			.prose hr {
+				border: none;
+				border-top: 2px solid rgba(var(--purple-200), 0.5);
+				margin: 1.5em 0;
+			}
+			.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+				color: var(--primary-dark);
+			}
+			.prose h2 {
+				border-bottom: 2px solid rgba(var(--purple-200), 0.5);
+				padding-bottom: 0.5rem;
+				margin-top: 2.5rem;
+			}
+			.prose h3 {
+				color: var(--accent);
+				margin-top: 2rem;
+			}
+			.prose blockquote {
+				border-left: 4px solid var(--accent);
+				background: rgba(var(--purple-50), 0.5);
+				border-radius: 0 8px 8px 0;
+			}
+			.prose ul li {
+				margin-bottom: 0.5rem;
+			}
+			.prose strong {
+				color: var(--primary-dark);
 			}
 		</style>
 	</head>
@@ -59,9 +90,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
 				<div class="prose">
 					<div class="title">
 						<div class="date">

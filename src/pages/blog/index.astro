@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
@@ -19,69 +18,85 @@ const posts = (await getCollection('blog')).sort(
 		<style>
 			main {
 				width: 960px;
+				max-width: calc(100% - 2rem);
 			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
+			.blog-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 				gap: 2rem;
 				list-style-type: none;
-				margin: 0;
+				margin: 2rem 0;
 				padding: 0;
 			}
-			ul li {
-				width: calc(50% - 1rem);
+			.blog-card {
+				background: var(--card-gradient);
+				border: 1px solid rgba(var(--purple-200), 0.5);
+				border-radius: 16px;
+				padding: 1.5rem;
+				transition: all 0.3s ease;
+				box-shadow: var(--card-shadow);
+				backdrop-filter: blur(10px);
+				height: fit-content;
 			}
-			ul li * {
+			.blog-card:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--card-shadow-hover);
+				border-color: rgba(var(--accent), 0.3);
+			}
+			.blog-card a {
 				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
+				color: inherit;
 				display: block;
+				height: 100%;
 			}
-			.title {
+			.blog-title {
+				margin: 0 0 0.75rem 0;
+				color: var(--primary-dark);
+				line-height: 1.3;
+				font-size: 1.5rem;
+				font-weight: 700;
+				transition: color 0.2s ease;
+			}
+			.blog-card:hover .blog-title {
+				color: var(--accent);
+			}
+			.blog-date {
+				margin: 0 0 1rem 0;
+				color: rgba(var(--gray-dark), 0.7);
+				font-size: 0.9rem;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+			.blog-description {
 				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
+				color: rgba(var(--gray-dark), 0.85);
+				line-height: 1.6;
+				font-size: 1rem;
 			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
+			.featured-post {
+				grid-column: 1 / -1;
+				background: linear-gradient(135deg, rgba(var(--purple-100), 0.8), rgba(var(--blue-100), 0.6));
+				border: 2px solid rgba(var(--accent), 0.2);
 			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
+			.featured-post .blog-title {
+				font-size: 2rem;
+				margin-bottom: 1rem;
 			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+			.featured-post .blog-description {
+				font-size: 1.1rem;
 			}
 			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
+				.blog-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+					margin: 1rem 0;
 				}
-				ul li {
-					width: 100%;
-					text-align: center;
+				.blog-card {
+					padding: 1.25rem;
 				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
+				.featured-post .blog-title {
+					font-size: 1.75rem;
 				}
 			}
 		</style>
@@ -90,18 +105,19 @@ const posts = (await getCollection('blog')).sort(
 		<Header />
 		<main>
 			<section>
-				<ul>
+				<h1 style="text-align: center; color: var(--primary-dark); margin-bottom: 2rem;">Blog Posts</h1>
+				<ul class="blog-grid">
 					{
-						posts.map((post) => (
-							<li>
+						posts.map((post, index) => (
+							<li class={`blog-card ${index === 0 ? 'featured-post' : ''}`}>
 								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
+									<h3 class="blog-title">{post.data.title}</h3>
+									<p class="blog-date">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
+									{post.data.description && (
+										<p class="blog-description">{post.data.description}</p>
+									)}
 								</a>
 							</li>
 						))
