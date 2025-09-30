@@ -25,6 +25,11 @@ export const topics = [
     about:
       "Covering lazy loading, image optimization, caching, and Core Web Vitals for faster web apps.",
   },
+  {
+    title: "Web Accessibility (a11y) Best Practices",
+    about:
+      "How to make web applications accessible to all users, including those with disabilities.",
+  },
 
   // --- DevOps ---
   {
@@ -52,6 +57,11 @@ export const topics = [
     about:
       "Terraform vs Pulumi: managing cloud infrastructure declaratively and reproducibly.",
   },
+  {
+    title: "GitOps Principles",
+    about:
+      "How to implement GitOps practices for continuous deployment and infrastructure management.",
+  },
 
   // --- Cloud ---
   {
@@ -76,6 +86,11 @@ export const topics = [
     title: "Multi-Cloud Strategies",
     about:
       "When and how to use multiple cloud providers for redundancy and scalability.",
+  },
+  {
+    title: "Cloud Security Best Practices",
+    about:
+      "How to secure cloud environments, manage identities, and protect data across providers.",
   },
 
   // --- AI / ML ---
@@ -102,6 +117,11 @@ export const topics = [
     title: "Computer Vision in Web Apps",
     about: "Using TensorFlow.js or OpenCV for image recognition in browsers.",
   },
+  {
+    title: "Generative AI for Content Creation",
+    about:
+      "Leveraging AI models to generate text, images, and other media for creative projects.",
+  },
 
   // --- SaaS & Startups ---
   {
@@ -124,6 +144,11 @@ export const topics = [
   {
     title: "User Onboarding Strategies",
     about: "Designing frictionless flows that retain and engage users.",
+  },
+  {
+    title: "SaaS Security Best Practices",
+    about:
+      "How to secure SaaS applications, manage user identities, and protect sensitive data.",
   },
 
   // --- Programming Languages & Tools ---
@@ -177,6 +202,11 @@ export const topics = [
     title: "Networking for Tech Professionals",
     about:
       "Finding mentors, attending meetups, and building valuable connections.",
+  },
+  {
+    title: "Remote Work Best Practices",
+    about:
+      "Staying productive, managing time zones, and effective communication in remote teams.",
   },
 
   // --- Misc / Advanced Topics ---
