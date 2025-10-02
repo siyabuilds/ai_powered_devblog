@@ -23,7 +23,7 @@ const getLastIndex = () => {
     }
 
     const data = JSON.parse(fileContent);
-    return data.lastIndex || -1;
+    return data.lastIndex !== undefined ? data.lastIndex : -1;
   } catch (error) {
     console.warn("Error reading tracker file, resetting to -1:", error.message);
     return -1;
