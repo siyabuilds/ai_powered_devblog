@@ -3,212 +3,236 @@ const today = new Date();
 ---
 
 <footer>
-	<div class="footer-content">
-		<div class="brand-section">
-			<h3 class="brand-name">Synthwave</h3>
-			<p class="brand-tagline">AI-Powered Insights & Creative Tech Adventures</p>
-		</div>
-		
-		<div class="social-section">
-			<p class="connect-text">Let's Connect!</p>
-			<div class="social-links">
-				<a href="https://twitter.com/siyabuilds" target="_blank" class="social-link">
-					<span class="sr-only">Follow siyabuilds on Twitter/X</span>
-					<i class="fab fa-twitter" aria-hidden="true"></i>
-				</a>
-				<a href="https://linkedin.com/in/siyabuilds" target="_blank" class="social-link">
-					<span class="sr-only">Connect with siyabuilds on LinkedIn</span>
-					<i class="fab fa-linkedin" aria-hidden="true"></i>
-				</a>
-				<a href="https://github.com/siyabuilds" target="_blank" class="social-link">
-					<span class="sr-only">Follow siyabuilds on GitHub</span>
-					<i class="fab fa-github" aria-hidden="true"></i>
-				</a>
+	<div class="footer-container">
+		<div class="footer-content">
+			<div class="brand-section">
+				<h3 class="brand-name"><i class="fas fa-rocket"></i> Synthwave</h3>
+				<p class="brand-tagline">AI-Powered Content Generation Platform</p>
+				<p class="brand-description">
+					Automated, intelligent, and always evolving. Built with <i class="fas fa-heart" style="color: var(--accent);"></i> for the developer community.
+				</p>
+			</div>
+			
+			<div class="links-section">
+				<h4>Quick Links</h4>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/blog">Blog</a></li>
+					<li><a href="/about">About</a></li>
+				</ul>
+			</div>
+
+			<div class="tech-section">
+				<h4>Built With</h4>
+				<ul>
+					<li><i class="fas fa-rocket"></i> Astro</li>
+					<li><i class="fas fa-robot"></i> OpenAI GPT-4</li>
+					<li><i class="fas fa-cogs"></i> GitHub Actions</li>
+				</ul>
+			</div>
+			
+			<div class="social-section">
+				<h4>Connect</h4>
+				<div class="social-links">
+					<a href="https://github.com/siyabuilds" target="_blank" class="social-link" title="GitHub">
+						<span class="sr-only">Follow on GitHub</span>
+						<svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20">
+							<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+						</svg>
+					</a>
+					<a href="https://twitter.com/siyabuilds" target="_blank" class="social-link" title="Twitter">
+						<span class="sr-only">Follow on Twitter</span>
+						<svg viewBox="0 0 16 16" aria-hidden="true" width="20" height="20">
+							<path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+						</svg>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="footer-bottom">
-		<div class="footer-left">
-			<p class="copyright">&copy; {today.getFullYear()} Siyabonga Lukhele (siyabuilds). All rights reserved.</p>
-			<a href="https://github.com/siyabuilds/ai_powered_devblog" target="_blank" class="repo-link">
-				<span class="sr-only">View this project on GitHub</span>
-				<i class="fab fa-github" aria-hidden="true"></i>
-				View Repository
-			</a>
+		
+		<div class="footer-bottom">
+			<div class="copyright-section">
+				<p>&copy; {today.getFullYear()} Synthwave. Built by siyabuilds with AI assistance.</p>
+				<p class="powered-by">Automated content generation • Zero maintenance required</p>
+			</div>
 		</div>
-		<p class="powered-by">Powered by AI & Human Creativity</p>
 	</div>
 </footer>
 <style>
 	footer {
-		background: linear-gradient(135deg, rgba(var(--purple-100), 0.8), rgba(var(--blue-100), 0.6));
+		background: linear-gradient(135deg, rgba(var(--purple-100), 0.9), rgba(var(--blue-100), 0.7));
 		border-top: 1px solid rgba(var(--purple-200), 0.4);
-		margin-top: 4rem;
-		padding: 3rem 2rem 2rem;
-		backdrop-filter: blur(10px);
+		margin-top: 5rem;
+		backdrop-filter: blur(20px);
+		position: relative;
+	}
+
+	footer::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(90deg, var(--accent), var(--secondary), var(--accent));
+	}
+	
+	.footer-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 4rem 2rem 2rem;
 	}
 	
 	.footer-content {
-		max-width: 960px;
-		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 1fr auto;
+		grid-template-columns: 2fr 1fr 1fr 1fr;
 		gap: 3rem;
-		align-items: center;
+		margin-bottom: 3rem;
 	}
 	
-	.brand-section {
-		text-align: left;
-	}
-	
-	.brand-name {
-		font-size: 1.8rem;
-		font-weight: 700;
+	.brand-section h3 {
+		font-size: 1.75rem;
+		font-weight: 800;
 		color: var(--primary-dark);
-		margin: 0 0 0.5rem 0;
-		background: linear-gradient(135deg, var(--primary), var(--accent));
+		margin: 0 0 1rem 0;
+		background: linear-gradient(135deg, var(--primary-dark), var(--accent));
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 	}
 	
 	.brand-tagline {
+		margin: 0 0 1rem 0;
+		color: rgba(var(--gray-dark), 0.8);
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	.brand-description {
 		margin: 0;
 		color: rgba(var(--gray-dark), 0.7);
 		font-size: 0.95rem;
-		font-weight: 500;
+		line-height: 1.6;
 	}
-	
-	.social-section {
-		text-align: center;
-	}
-	
-	.connect-text {
-		margin: 0 0 1rem 0;
-		color: rgba(var(--gray-dark), 0.7);
-		font-size: 0.9rem;
-		font-weight: 500;
+
+	.links-section h4,
+	.tech-section h4,
+	.social-section h4 {
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--primary-dark);
+		margin: 0 0 1.5rem 0;
 		text-transform: uppercase;
-		letter-spacing: 0.5px;
+		letter-spacing: 0.05em;
+	}
+
+	.links-section ul,
+	.tech-section ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.links-section li,
+	.tech-section li {
+		margin-bottom: 0.75rem;
+	}
+
+	.links-section a {
+		color: rgba(var(--gray-dark), 0.8);
+		text-decoration: none;
+		font-weight: 500;
+		transition: all 0.3s ease;
+		border-bottom: none;
+	}
+
+	.links-section a:hover {
+		color: var(--accent);
+		border-bottom: none;
+		transform: translateX(4px);
+	}
+
+	.tech-section li {
+		color: rgba(var(--gray-dark), 0.8);
+		font-weight: 500;
+		font-size: 0.95rem;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.tech-section li i {
+		color: var(--accent);
+		width: 20px;
+		text-align: center;
+		flex-shrink: 0;
 	}
 	
 	.social-links {
 		display: flex;
 		gap: 1rem;
-		justify-content: center;
 	}
 	
 	.social-link {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 48px;
-		height: 48px;
+		width: 44px;
+		height: 44px;
 		background: rgba(255, 255, 255, 0.8);
 		border: 1px solid rgba(var(--purple-200), 0.5);
-		border-radius: 50%;
+		border-radius: 12px;
 		color: rgba(var(--gray-dark), 0.7);
 		text-decoration: none;
-		transition: all 0.3s ease;
-		backdrop-filter: blur(5px);
-		font-size: 20px;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		backdrop-filter: blur(10px);
 	}
 	
 	.social-link:hover {
 		background: rgba(var(--purple-100), 0.9);
 		border-color: var(--accent);
 		color: var(--accent);
-		transform: translateY(-2px);
-		box-shadow: 0 8px 16px rgba(var(--purple-900), 0.15);
+		transform: translateY(-4px);
+		box-shadow: 0 8px 20px rgba(var(--accent), 0.2);
+		border-bottom: 1px solid rgba(var(--purple-200), 0.5);
 	}
 	
 	.footer-bottom {
-		max-width: 960px;
-		margin: 0 auto;
 		padding-top: 2rem;
-		margin-top: 2rem;
 		border-top: 1px solid rgba(var(--purple-200), 0.3);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 1rem;
+		text-align: center;
 	}
 	
-	.footer-left {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-	
-	.copyright {
-		margin: 0;
+	.copyright-section p {
+		margin: 0 0 0.5rem 0;
 		color: rgba(var(--gray-dark), 0.7);
-		font-size: 0.85rem;
-	}
-	
-	.repo-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 1rem;
-		background: rgba(var(--gray-dark), 0.8);
-		border: 1px solid rgba(var(--gray-dark), 0.9);
-		border-radius: 6px;
-		color: rgba(255, 255, 255, 0.9);
-		text-decoration: none;
-		font-size: 0.85rem;
-		font-weight: 500;
-		transition: none;
-		width: fit-content;
-	}
-	
-	.repo-link i {
-		font-size: 16px;
+		font-size: 0.9rem;
 	}
 	
 	.powered-by {
-		margin: 0;
-		color: rgba(var(--gray-dark), 0.6);
-		font-size: 0.8rem;
-		font-style: italic;
+		font-size: 0.85rem;
+		font-weight: 600;
 		background: linear-gradient(90deg, var(--accent), var(--secondary));
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
 	}
 	
-	@media (max-width: 720px) {
-		footer {
-			padding: 2rem 1rem 1.5rem;
+	@media (max-width: 768px) {
+		.footer-container {
+			padding: 3rem 1.5rem 2rem;
 		}
 		
 		.footer-content {
 			grid-template-columns: 1fr;
-			gap: 2rem;
+			gap: 2.5rem;
 			text-align: center;
 		}
-		
-		.brand-section {
-			text-align: center;
-		}
-		
-		.footer-bottom {
-			flex-direction: column;
-			align-items: center;
-			gap: 1rem;
-		}
-		
-		.footer-left {
-			text-align: center;
-			align-items: center;
-		}
-		
-		.social-link {
-			width: 44px;
-			height: 44px;
-			font-size: 18px;
+
+		.social-links {
+			justify-content: center;
 		}
 	}
 </style>

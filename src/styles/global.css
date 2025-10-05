@@ -55,15 +55,20 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: rgb(var(--gray-dark));
-  font-size: 20px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.8;
   min-height: 100vh;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 main {
-  width: 720px;
-  max-width: calc(100% - 2em);
+  width: 100%;
+  max-width: 1200px;
   margin: auto;
-  padding: 3em 1em;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
 }
 h1,
 h2,
@@ -71,40 +76,69 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 1rem 0;
   color: rgb(var(--black));
-  line-height: 1.2;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 h1 {
-  font-size: 3.052em;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
 }
 h2 {
-  font-size: 2.441em;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
 }
 h3 {
-  font-size: 1.953em;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 h4 {
-  font-size: 1.563em;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
 }
 h5 {
-  font-size: 1.25em;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+}
+h6 {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 600;
 }
 strong,
 b {
-  font-weight: 700;
+  font-weight: 600;
+  color: rgb(var(--black));
 }
 a {
   color: var(--accent);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 1px;
 }
 a:hover {
-  color: var(--accent);
+  color: var(--primary-dark);
+  border-bottom-color: var(--accent-light);
+  transform: translateY(-1px);
 }
 p {
-  margin-bottom: 1em;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.75;
 }
 .prose p {
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  line-height: 1.8;
 }
 textarea {
   width: 100%;
@@ -122,38 +156,175 @@ img {
   border-radius: 8px;
 }
 code {
-  font-family: "IBM Plex Mono", "Fira Code", "SF Mono", Monaco, "Cascadia Code",
-    "Roboto Mono", Consolas, "Courier New", monospace;
-  padding: 2px 5px;
-  background-color: rgb(var(--gray-light));
-  border-radius: 2px;
+  font-family: "JetBrains Mono", "IBM Plex Mono", "Fira Code", "SF Mono", Monaco,
+    "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  padding: 0.25rem 0.5rem;
+  background: rgba(var(--purple-900), 0.9);
+  color: rgba(var(--purple-50), 1);
+  border: 1px solid rgba(var(--purple-700), 0.6);
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 500;
 }
 pre {
-  font-family: "IBM Plex Mono", "Fira Code", "SF Mono", Monaco, "Cascadia Code",
-    "Roboto Mono", Consolas, "Courier New", monospace;
-  padding: 1.5em;
-  border-radius: 8px;
+  font-family: "JetBrains Mono", "IBM Plex Mono", "Fira Code", "SF Mono", Monaco,
+    "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+  padding: 2rem;
+  border-radius: 12px;
+  background: rgba(var(--purple-900), 0.95);
+  color: rgba(var(--purple-50), 1);
+  border: 1px solid rgba(var(--purple-700), 0.8);
+  box-shadow: var(--card-shadow);
+  margin: 2rem 0;
+  overflow-x: auto;
+  position: relative;
 }
 pre > code {
   all: unset;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
 }
 blockquote {
   border-left: 4px solid var(--accent);
-  padding: 0 0 0 20px;
-  margin: 0px;
-  font-size: 1.333em;
+  padding: 1.5rem 0 1.5rem 2rem;
+  margin: 2rem 0;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 500;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--purple-50), 0.8),
+    rgba(var(--blue-50), 0.6)
+  );
+  border-radius: 0 12px 12px 0;
+  color: rgb(var(--gray-dark));
+  position: relative;
+}
+blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  color: var(--accent-light);
+  position: absolute;
+  left: -0.5rem;
+  top: -1rem;
+  line-height: 1;
+  opacity: 0.3;
 }
 hr {
   border: none;
-  border-top: 1px solid rgb(var(--gray-light));
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-light),
+    transparent
+  );
+  margin: 3rem 0;
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   body {
-    font-size: 18px;
+    font-size: 16px;
   }
   main {
-    padding: 1em;
+    padding: 1rem;
+    gap: 1.5rem;
   }
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Enhanced card components */
+.card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--purple-200), 0.4);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(var(--accent), 0.3);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Modern button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(var(--accent), 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(var(--accent), 0.4);
+  color: white;
+  border-bottom: none;
+}
+
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Typography utilities */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-large {
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.text-muted {
+  color: rgba(var(--gray-dark), 0.7);
 }
 
 .sr-only {

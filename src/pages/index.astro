@@ -12,109 +12,308 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<style>
 			.hero {
 				text-align: center;
-				padding: 2rem 0;
+				padding: 4rem 2rem;
 				background: var(--card-gradient);
-				border-radius: 20px;
-				margin: 2rem 0;
-				border: 1px solid rgba(var(--purple-200), 0.5);
-				box-shadow: var(--card-shadow);
+				border-radius: 24px;
+				margin: 2rem 0 3rem 0;
+				border: 1px solid rgba(var(--purple-200), 0.3);
+				box-shadow: var(--card-shadow-hover);
+				position: relative;
+				overflow: hidden;
 			}
+
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, var(--accent), var(--secondary), var(--accent));
+				animation: shimmer 3s ease-in-out infinite;
+			}
+
+			@keyframes shimmer {
+				0%, 100% { opacity: 0.5; }
+				50% { opacity: 1; }
+			}
+
 			.hero h1 {
-				color: var(--primary-dark);
-				font-size: 2.5rem;
-				margin-bottom: 1rem;
-			}
-			.hero h1 i {
-				color: var(--accent);
-				margin-right: 0.5rem;
-				background: linear-gradient(45deg, var(--accent), var(--secondary));
+				font-size: clamp(2.5rem, 5vw, 4rem);
+				margin-bottom: 1.5rem;
+				background: linear-gradient(135deg, var(--primary-dark), var(--accent), var(--secondary));
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 				background-clip: text;
+				font-weight: 900;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1rem;
 			}
-			.content-card {
-				background: rgba(255, 255, 255, 0.7);
+
+			.hero h1 i {
+				background: linear-gradient(135deg, var(--accent), var(--secondary));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				animation: pulse 2s ease-in-out infinite;
+			}
+
+			@keyframes pulse {
+				0%, 100% { transform: scale(1); }
+				50% { transform: scale(1.1); }
+			}
+
+			.hero-subtitle {
+				font-size: 1.25rem;
+				color: rgba(var(--gray-dark), 0.8);
+				margin-bottom: 2rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+				line-height: 1.6;
+			}
+
+			.hero-actions {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+				margin-top: 2rem;
+			}
+
+			.content-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				gap: 2rem;
+				margin: 3rem 0;
+			}
+
+			.feature-card {
+				background: rgba(255, 255, 255, 0.8);
+				backdrop-filter: blur(20px);
+				border: 1px solid rgba(var(--purple-200), 0.4);
+				border-radius: 20px;
+				padding: 2.5rem;
+				box-shadow: var(--card-shadow);
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.feature-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: linear-gradient(90deg, var(--accent), var(--secondary));
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			.feature-card:hover {
+				transform: translateY(-12px);
+				box-shadow: var(--card-shadow-hover);
+				border-color: rgba(var(--accent), 0.4);
+			}
+
+			.feature-card:hover::before {
+				opacity: 1;
+			}
+
+			.feature-card h3 {
+				color: var(--primary-dark);
+				margin-bottom: 1.5rem;
+				font-size: 1.5rem;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.feature-card h3 i {
+				color: var(--accent);
+				font-size: 1.25rem;
+				flex-shrink: 0;
+			}
+
+			.feature-card p {
+				color: rgba(var(--gray-dark), 0.8);
+				line-height: 1.7;
+				margin-bottom: 1.5rem;
+			}
+
+			.feature-list {
+				background: linear-gradient(135deg, rgba(var(--blue-50), 0.6), rgba(var(--purple-50), 0.4));
 				border-radius: 12px;
 				padding: 1.5rem;
-				margin: 1.5rem 0;
-				border: 1px solid rgba(var(--purple-200), 0.3);
-				box-shadow: var(--box-shadow);
-				backdrop-filter: blur(5px);
-			}
-			.content-card:hover {
-				border-color: rgba(var(--accent), 0.4);
-				transition: border-color 0.2s ease;
-			}
-			a {
-				color: var(--accent);
-				text-decoration: none;
-				font-weight: 500;
-			}
-			a:hover {
-				color: var(--accent-dark);
-				text-decoration: underline;
-			}
-			code {
-				background: rgba(var(--purple-100), 0.8);
-				color: var(--primary-dark);
-				font-weight: 500;
-			}
-			ul {
-				background: rgba(var(--blue-50), 0.5);
-				border-radius: 8px;
-				padding: 1rem 1.5rem;
 				border-left: 4px solid var(--accent);
+				margin: 1.5rem 0;
+			}
+
+			.feature-list li {
+				margin-bottom: 0.75rem;
+				color: rgba(var(--gray-dark), 0.9);
+				font-weight: 500;
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+			}
+
+			.feature-list li i {
+				color: var(--accent);
+				width: 20px;
+				text-align: center;
+				flex-shrink: 0;
+			}
+
+			.stats-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1.5rem;
+				margin: 3rem 0;
+			}
+
+			.stat-card {
+				text-align: center;
+				padding: 2rem 1.5rem;
+				background: linear-gradient(135deg, rgba(var(--purple-100), 0.8), rgba(var(--blue-100), 0.6));
+				border-radius: 16px;
+				border: 1px solid rgba(var(--purple-200), 0.3);
+			}
+
+			.stat-number {
+				font-size: 2.5rem;
+				font-weight: 800;
+				color: var(--accent);
+				display: block;
+				margin-bottom: 0.5rem;
+			}
+
+			.stat-label {
+				font-size: 0.9rem;
+				color: rgba(var(--gray-dark), 0.7);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				font-weight: 600;
+			}
+
+			@media (max-width: 768px) {
+				.hero {
+					padding: 3rem 1.5rem;
+					margin: 1rem 0 2rem 0;
+				}
+
+				.content-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+
+				.feature-card {
+					padding: 2rem;
+				}
+
+				.hero-actions {
+					flex-direction: column;
+					align-items: center;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<div class="hero">
-				<h1><i class="fas fa-wave-square"></i> Welcome to Synthwave</h1>
-				<p style="font-size: 1.1rem; color: rgba(var(--gray-dark), 0.8);">
-					Where AI meets creativity in the digital frontier
+			<section class="hero">
+				<h1><i class="fas fa-rocket"></i> Synthwave</h1>
+				<p class="hero-subtitle">
+					Where AI meets creativity in the digital frontier. Automated content generation powered by cutting-edge technology.
 				</p>
-			</div>
-			<div class="content-card">
-				<h2 style="color: var(--primary-dark); margin-bottom: 1rem;">About Synthwave</h2>
-				<p>
-					Hey there! I'm <strong>Siyabonga Lukhele</strong>, but you might know me as <strong>siyabuilds</strong>. 
-					I created Synthwave because I believe we're living in an extraordinary time where AI isn't just 
-					changing how we work—it's revolutionizing how we think, create, and share ideas.
-				</p>
-			</div>
-			<div class="content-card">
-				<h3 style="color: var(--accent); margin-bottom: 1rem;">Why AI-Powered Blogging?</h3>
-				<p>
-					Traditional blogging has its limits. But when you combine human creativity with AI's vast 
-					knowledge and processing power, magic happens. Synthwave is my experiment in pushing the 
-					boundaries of what's possible when we collaborate with AI to create compelling, insightful, 
-					and genuinely helpful content.
-				</p>
-			</div>
-			<div class="content-card">
-				<h3 style="color: var(--secondary); margin-bottom: 1rem;">What You'll Find Here</h3>
-				<ul>
-					<li>Deep dives into AI tools and technologies that actually matter</li>
-					<li>Creative experiments at the intersection of code and imagination</li>
-					<li>Practical insights from building with cutting-edge tech</li>
-					<li>Behind-the-scenes looks at how AI can enhance human creativity</li>
-					<li>Honest takes on the future we're building together</li>
-				</ul>
-			</div>
-			<div class="content-card">
-				<h3 style="color: var(--accent-dark); margin-bottom: 1rem;">Join the Journey</h3>
-				<p>
-					Whether you're a developer, creator, or just someone curious about where technology is 
-					heading, Synthwave is your window into the future we're building. Every post here is 
-					crafted with AI assistance but driven by human vision and experience.
-				</p>
-				<p>
-					Ready to explore? Check out my <a href="/blog">latest posts</a> or learn more 
-					<a href="/about">about me and this project</a>.
-				</p>
-			</div>
+				<div class="hero-actions">
+					<a href="/blog" class="btn">Explore Blog Posts</a>
+					<a href="/about" class="btn" style="background: linear-gradient(135deg, var(--secondary), var(--accent));">Learn More</a>
+				</div>
+			</section>
+
+			<section class="stats-grid">
+				<div class="stat-card">
+					<span class="stat-number">50+</span>
+					<span class="stat-label">AI Topics</span>
+				</div>
+				<div class="stat-card">
+					<span class="stat-number">Daily</span>
+					<span class="stat-label">Auto Generation</span>
+				</div>
+				<div class="stat-card">
+					<span class="stat-number">GPT-4</span>
+					<span class="stat-label">Powered</span>
+				</div>
+				<div class="stat-card">
+					<span class="stat-number">100%</span>
+					<span class="stat-label">Automated</span>
+				</div>
+			</section>
+
+			<section class="content-grid">
+				<div class="feature-card">
+					<h3><i class="fas fa-robot"></i> AI-Powered Content</h3>
+					<p>
+						Every post is crafted using OpenAI's GPT-4, ensuring high-quality, detailed content that covers the latest in web development, AI, and technology trends.
+					</p>
+					<p style="font-size: 0.9rem; color: rgba(var(--gray-dark), 0.6);">
+						From React state management to CSS Grid layouts, our AI creates comprehensive guides and tutorials.
+					</p>
+				</div>
+
+				<div class="feature-card">
+					<h3><i class="fas fa-sync-alt"></i> Smart Topic Rotation</h3>
+					<p>
+						Our intelligent topic tracker ensures diverse content by cycling through 50+ carefully curated topics in web development, AI, and modern programming practices.
+					</p>
+					<p style="font-size: 0.9rem; color: rgba(var(--gray-dark), 0.6);">
+						Never miss out on trending topics or foundational concepts.
+					</p>
+				</div>
+
+				<div class="feature-card">
+					<h3><i class="fas fa-bolt"></i> Lightning Fast</h3>
+					<p>
+						Built with Astro for optimal performance. Static site generation means blazing-fast load times and excellent SEO out of the box.
+					</p>
+					<p style="font-size: 0.9rem; color: rgba(var(--gray-dark), 0.6);">
+						Optimized for Core Web Vitals and modern web standards.
+					</p>
+				</div>
+
+				<div class="feature-card">
+					<h3><i class="fas fa-cogs"></i> Zero Maintenance</h3>
+					<p>
+						GitHub Actions handles everything automatically. Daily content generation, file creation, and deployment - all without manual intervention.
+					</p>
+					<p style="font-size: 0.9rem; color: rgba(var(--gray-dark), 0.6);">
+						Set it once, and let the automation work for you.
+					</p>
+				</div>
+			</section>
+
+			<section class="feature-card" style="margin: 3rem 0;">
+				<h3 style="text-align: center; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem;"><i class="fas fa-book-open" style="color: var(--accent);"></i> What You'll Discover</h3>
+				<div class="feature-list">
+					<ul style="margin: 0; list-style: none; padding: 0;">
+						<li><i class="fas fa-bullseye"></i> Deep dives into modern web development frameworks</li>
+						<li><i class="fas fa-brain"></i> AI and machine learning practical applications</li>
+						<li><i class="fas fa-tachometer-alt"></i> Performance optimization techniques and best practices</li>
+						<li><i class="fas fa-palette"></i> UI/UX design patterns and implementation guides</li>
+						<li><i class="fas fa-tools"></i> Developer tools and workflow improvements</li>
+						<li><i class="fas fa-rocket"></i> Cutting-edge technology trends and analysis</li>
+					</ul>
+				</div>
+				<div style="text-align: center; margin-top: 2rem;">
+					<a href="/blog" class="btn">Start Reading Now</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
