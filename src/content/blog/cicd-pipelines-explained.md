@@ -4,7 +4,6 @@ pubDate: 'Oct 7 2025'
 description: 'A guide to continuous integration and delivery using GitHub Actions, GitLab CI, and Jenkins.'
 ---
 
-```markdown
 # CI/CD Pipelines Explained: Your Friendly Guide to Automation with GitHub Actions, GitLab CI, and Jenkins
 
 Hey there! If you've ever wondered how modern software projects seem to magically build, test, and deploy themselves whenever a developer pushes code, you’re in the right place. Today, we’re diving into the world of **CI/CD pipelines** — what they are, why they matter, and how you can implement them using three popular tools: **GitHub Actions**, **GitLab CI**, and **Jenkins**.
@@ -301,9 +300,3 @@ I hope this guide demystified CI/CD pipelines for you! If you want to get hands-
 - [Awesome CI/CD Tools](https://github.com/ligurio/awesome-ci-cd)
 
 ---
-
-If you have questions or want me to cover specific CI/CD topics, just drop a comment below!
-
-Cheers,  
-*Your friendly CI/CD guide*  
-```
