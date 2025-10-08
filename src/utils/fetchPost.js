@@ -5,14 +5,24 @@ export const fetchPost = async (topic) => {
 
   const { title, about } = topic;
 
-  const prompt = `Write a detailed, friendly, and highly engaging blog post on the topic "${title}". 
-  - Make it easy to skim with clear headings, subheadings, and bullet points where appropriate.
-  - Cover the following points: ${about}.
-  - Include practical examples, code snippets, or anecdotes where relevant.
-  - Maintain a conversational and approachable tone, as if speaking directly to the reader.
-  - The post should be approximately 1500-2000 words.
-  - Format the output in Markdown for web-ready publishing.
-  - End with a clear summary or key takeaways section.`;
+  const prompt = `
+Write a detailed, friendly, and engaging blog post on the topic: "${title}".
+Cover the following points: ${about}.
+Include practical examples, relatable explanations, and where appropriate, short code snippets.
+
+Tone:
+- Conversational yet knowledgeable
+- Uses everyday developer language
+- Feels like a mentor explaining things clearly
+
+Formatting:
+- Use Markdown headings, subheadings, and lists
+- Avoid adding a "Comments" or "Discussion" section
+- End with a short summary or takeaway paragraph
+
+Length:
+Around 1500–2000 words.
+`;
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
