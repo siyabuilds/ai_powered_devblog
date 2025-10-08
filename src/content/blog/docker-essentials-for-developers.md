@@ -4,7 +4,6 @@ pubDate: 'Oct 8 2025'
 description: 'Understanding containers, images, volumes, and building Dockerized applications.'
 ---
 
-```markdown
 # Docker Essentials for Developers: Your Friendly Guide to Container Magic
 
 Hey there, fellow developer! 👋
