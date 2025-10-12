@@ -49,11 +49,12 @@ const posts = (await getCollection('blog')).sort(
 
 			.blog-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
 				gap: 2.5rem;
 				list-style-type: none;
 				margin: 0;
 				padding: 0;
+				width: 100%;
 			}
 
 			.blog-card {
@@ -228,6 +229,45 @@ const posts = (await getCollection('blog')).sort(
 
 				.featured-post .blog-description {
 					font-size: 1.1rem;
+				}
+
+				main {
+					padding: 1rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				main {
+					padding: 0.5rem;
+				}
+
+				.blog-grid {
+					gap: 1.5rem;
+				}
+
+				.page-header {
+					margin-bottom: 2rem;
+					padding: 1.5rem 0;
+				}
+
+				.card-content {
+					padding: 1.25rem;
+				}
+
+				.featured-post .card-content {
+					padding: 1.5rem 1.25rem;
+				}
+
+				.featured-post .blog-title {
+					font-size: 1.75rem;
+				}
+
+				.blog-title {
+					font-size: 1.25rem;
+				}
+
+				.featured-post .blog-description {
+					font-size: 1rem;
 				}
 			}
 		</style>

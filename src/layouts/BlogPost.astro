@@ -15,13 +15,14 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: calc(100% - 2em);
+				width: 100%;
 				max-width: 100%;
 				margin: 0;
+				overflow-x: hidden;
 			}
 			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
+				width: 100%;
+				max-width: min(720px, calc(100% - 2rem));
 				margin: auto;
 				padding: 2em 1em;
 				color: rgba(var(--gray-dark), 0.9);
@@ -39,8 +40,10 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 			.title h1 {
 				margin: 0 0 1em 0;
 				color: var(--primary-dark);
-				font-size: 2.5rem;
+				font-size: clamp(1.5rem, 4vw, 2.5rem);
 				line-height: 1.2;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
 			}
 			.date {
 				margin-bottom: 0.5em;
@@ -62,6 +65,8 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 			}
 			.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
 				color: var(--primary-dark);
+				word-wrap: break-word;
+				overflow-wrap: break-word;
 			}
 			.prose h2 {
 				border-bottom: 2px solid rgba(var(--purple-200), 0.5);
@@ -82,6 +87,26 @@ const { title, description, pubDate, updatedDate } = Astro.props;
 			}
 			.prose strong {
 				color: var(--primary-dark);
+			}
+			.prose pre {
+				overflow-x: auto;
+				max-width: 100%;
+			}
+			.prose code {
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+			}
+			.prose img {
+				max-width: 100%;
+				height: auto;
+			}
+			@media (max-width: 768px) {
+				.prose {
+					padding: 1em 0.5em;
+				}
+				.title {
+					padding: 1.5em;
+				}
 			}
 		</style>
 	</head>

@@ -44,6 +44,10 @@
     0 10px 10px -5px rgba(var(--purple-900), 0.08);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;
@@ -60,6 +64,7 @@ body {
   min-height: 100vh;
   font-weight: 400;
   letter-spacing: -0.01em;
+  overflow-x: hidden;
 }
 main {
   width: 100%;
@@ -236,6 +241,31 @@ hr {
   }
 }
 
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  main {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  .prose p {
+    font-size: 1rem;
+  }
+}
+
 /* Enhanced card components */
 .card {
   background: rgba(255, 255, 255, 0.8);
@@ -300,14 +330,15 @@ hr {
 .grid {
   display: grid;
   gap: 2rem;
+  width: 100%;
 }
 
 .grid-2 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
 }
 
 .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
 }
 
 /* Typography utilities */

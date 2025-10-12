@@ -188,4 +188,28 @@ import HeaderLink from './HeaderLink.astro';
 			font-size: 1.25rem;
 		}
 	}
+
+	@media (max-width: 480px) {
+		header {
+			padding: 0 0.5rem;
+		}
+		
+		nav {
+			gap: 0.75rem;
+			padding: 0.75rem 0;
+		}
+
+		.social-links a {
+			width: 32px;
+			height: 32px;
+		}
+
+		.brand h2 {
+			font-size: 1.1rem;
+		}
+
+		.tagline {
+			font-size: 0.7rem;
+		}
+	}
 </style>

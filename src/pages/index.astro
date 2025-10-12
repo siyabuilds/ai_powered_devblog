@@ -85,9 +85,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			.content-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
 				gap: 2rem;
 				margin: 3rem 0;
+				width: 100%;
 			}
 
 			.feature-card {
@@ -172,9 +173,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 			.stats-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
 				gap: 1.5rem;
 				margin: 3rem 0;
+				width: 100%;
 			}
 
 			.stat-card {
@@ -212,6 +214,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					gap: 1.5rem;
 				}
 
+				.stats-grid {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 1rem;
+				}
+
 				.feature-card {
 					padding: 2rem;
 				}
@@ -219,6 +226,40 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				.hero-actions {
 					flex-direction: column;
 					align-items: center;
+				}
+
+				.hero-actions .btn {
+					width: 100%;
+					max-width: 280px;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero {
+					padding: 2rem 1rem;
+					margin: 0.5rem 0 1.5rem 0;
+				}
+
+				.stats-grid {
+					grid-template-columns: 1fr;
+					gap: 1rem;
+				}
+
+				.feature-card {
+					padding: 1.5rem;
+				}
+
+				.hero h1 {
+					font-size: 2rem;
+				}
+
+				.hero-subtitle {
+					font-size: 1.1rem;
+				}
+
+				.btn {
+					padding: 0.875rem 1.25rem;
+					font-size: 0.9rem;
 				}
 			}
 		</style>
