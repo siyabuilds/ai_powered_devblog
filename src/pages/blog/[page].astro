@@ -6,14 +6,26 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
+export async function getStaticPaths({ paginate }) {
+	const posts = (await getCollection('blog')).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+	
+	// Get all posts except the first one (featured post)
+	const paginatedPosts = posts.slice(1);
+	
+	return paginate(paginatedPosts, { 
+		pageSize: 4,
+		// This ensures the first page is `/blog/` instead of `/blog/1/`
+		// but we'll handle that differently
+	});
+}
+
+const { page } = Astro.props;
 const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
-
 const featuredPost = allPosts[0];
-// Get first 4 posts after the featured post for page 1
-const paginatedPosts = allPosts.slice(1, 5);
-const totalPages = Math.ceil((allPosts.length - 1) / 4);
 ---
 
 <!doctype html>
@@ -370,24 +382,26 @@ const totalPages = Math.ceil((allPosts.length - 1) / 4);
 
 			<section>
 				<ul class="blog-grid">
-					{/* Featured post (latest) */}
-					<li class="blog-card featured-post">
-						<a href={`/blog/${featuredPost.id}/`}>
-							<div class="card-content">
-								<h3 class="blog-title">{featuredPost.data.title}</h3>
-								<p class="blog-date">
-									<FormattedDate date={featuredPost.data.pubDate} />
-								</p>
-								{featuredPost.data.description && (
-									<p class="blog-description">{featuredPost.data.description}</p>
-								)}
-							</div>
-						</a>
-					</li>
+					{/* Always show the featured post on page 1 only */}
+					{page.currentPage === 1 && (
+						<li class="blog-card featured-post">
+							<a href={`/blog/${featuredPost.id}/`}>
+								<div class="card-content">
+									<h3 class="blog-title">{featuredPost.data.title}</h3>
+									<p class="blog-date">
+										<FormattedDate date={featuredPost.data.pubDate} />
+									</p>
+									{featuredPost.data.description && (
+										<p class="blog-description">{featuredPost.data.description}</p>
+									)}
+								</div>
+							</a>
+						</li>
+					)}
 					
-					{/* First 4 paginated posts */}
+					{/* Show paginated posts */}
 					{
-						paginatedPosts.map((post) => (
+						page.data.map((post) => (
 							<li class="blog-card">
 								<a href={`/blog/${post.id}/`}>
 									<div class="card-content">
@@ -406,21 +420,39 @@ const totalPages = Math.ceil((allPosts.length - 1) / 4);
 				</ul>
 
 				{/* Pagination Navigation */}
-				{totalPages > 1 && (
+				{page.lastPage > 1 && (
 					<nav class="pagination">
-						{/* Page 1 (current) */}
-						<span class="pagination-button current">1</span>
-
-						{/* Other Pages */}
-						{Array.from({ length: totalPages - 1 }, (_, i) => i + 2).map((pageNum) => (
-							<a href={`/blog/${pageNum}/`} class="pagination-button">
-								{pageNum}
+						{/* Previous Page */}
+						{page.url.prev && (
+							<a 
+								href={page.currentPage === 2 ? '/blog/' : page.url.prev} 
+								class="pagination-button"
+							>
+								<i class="fas fa-chevron-left"></i>
+								<span class="sr-only">Previous</span>
 							</a>
-						))}
+						)}
+
+						{/* Page Numbers */}
+						{Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => {
+							const isCurrentPage = pageNum === page.currentPage;
+							// Handle different URL structure: page 1 is at /blog/, others at /blog/N/
+							const pageUrl = pageNum === 1 ? '/blog/' : `/blog/${pageNum}/`;
+							
+							return (
+								<a 
+									href={pageUrl} 
+									class={`pagination-button ${isCurrentPage ? 'current' : ''}`}
+									aria-current={isCurrentPage ? 'page' : undefined}
+								>
+									{pageNum}
+								</a>
+							);
+						})}
 
 						{/* Next Page */}
-						{totalPages > 1 && (
-							<a href="/blog/2/" class="pagination-button">
+						{page.url.next && (
+							<a href={page.url.next} class="pagination-button">
 								<i class="fas fa-chevron-right"></i>
 								<span class="sr-only">Next</span>
 							</a>
@@ -428,7 +460,7 @@ const totalPages = Math.ceil((allPosts.length - 1) / 4);
 
 						{/* Pagination Info */}
 						<div class="pagination-info">
-							Page 1 of {totalPages}
+							Page {page.currentPage} of {page.lastPage}
 						</div>
 					</nav>
 				)}
@@ -437,5 +469,3 @@ const totalPages = Math.ceil((allPosts.length - 1) / 4);
 		<Footer />
 	</body>
 </html>
-
-
