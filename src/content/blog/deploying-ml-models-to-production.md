@@ -300,5 +300,3 @@ Remember, deploying ML isn’t a one-time task—it’s an ongoing process of im
 Happy deploying! 🚀
 
 ---
-
-If you want, I can also help you set up a sample project or dive deeper into any of these topics. Just ask!
