@@ -18,6 +18,7 @@ Tone:
 Formatting:
 - Use Markdown headings, subheadings, and lists
 - Avoid adding a "Comments" or "Discussion" section
+- Include relevant links to official documentation or resources just before the conclusion
 - End with a short summary or takeaway paragraph
 
 Length:
