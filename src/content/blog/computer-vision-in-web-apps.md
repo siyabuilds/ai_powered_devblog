@@ -1,7 +1,7 @@
 ---
-title: 'Computer Vision in Web Apps'
-pubDate: 'Oct 21 2025'
-description: 'Using TensorFlow.js or OpenCV for image recognition in browsers.'
+title: "Computer Vision in Web Apps"
+pubDate: "Oct 21 2025"
+description: "Using TensorFlow.js or OpenCV for image recognition in browsers."
 ---
 
 # Computer Vision in Web Apps: Unlocking the Power of Images in Your Browser
@@ -91,42 +91,46 @@ Here’s a minimal example that classifies an image loaded in an `<img>` tag.
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>TensorFlow.js Image Classification</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
-</head>
-<body>
-  <h2>Image Classification with TensorFlow.js</h2>
-  <img id="img" src="https://tensorflow.org/images/blogs/serving/cat.jpg" width="300" />
-  <button id="predictBtn">Classify Image</button>
-  <p id="result">Prediction will appear here.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TensorFlow.js Image Classification</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+  </head>
+  <body>
+    <h2>Image Classification with TensorFlow.js</h2>
+    <img
+      id="img"
+      src="https://tensorflow.org/images/blogs/serving/cat.jpg"
+      width="300"
+    />
+    <button id="predictBtn">Classify Image</button>
+    <p id="result">Prediction will appear here.</p>
 
-  <script>
-    const img = document.getElementById('img');
-    const button = document.getElementById('predictBtn');
-    const result = document.getElementById('result');
+    <script>
+      const img = document.getElementById("img");
+      const button = document.getElementById("predictBtn");
+      const result = document.getElementById("result");
 
-    let model;
+      let model;
 
-    async function loadModel() {
-      result.textContent = 'Loading model...';
-      model = await mobilenet.load();
-      result.textContent = 'Model loaded. Click classify!';
-    }
+      async function loadModel() {
+        result.textContent = "Loading model...";
+        model = await mobilenet.load();
+        result.textContent = "Model loaded. Click classify!";
+      }
 
-    async function classifyImage() {
-      const predictions = await model.classify(img);
-      result.textContent = predictions
-        .map(p => `${p.className} (${(p.probability * 100).toFixed(2)}%)`)
-        .join(', ');
-    }
+      async function classifyImage() {
+        const predictions = await model.classify(img);
+        result.textContent = predictions
+          .map((p) => `${p.className} (${(p.probability * 100).toFixed(2)}%)`)
+          .join(", ");
+      }
 
-    button.addEventListener('click', classifyImage);
-    loadModel();
-  </script>
-</body>
+      button.addEventListener("click", classifyImage);
+      loadModel();
+    </script>
+  </body>
 </html>
 ```
 
@@ -157,90 +161,92 @@ Let’s detect faces in images using OpenCV.js’s **Haar Cascade Classifier**�
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>OpenCV.js Face Detection</title>
-  <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
-  <style>
-    canvas {
-      border: 1px solid black;
-    }
-  </style>
-</head>
-<body>
-  <h2>Face Detection with OpenCV.js</h2>
-  <input type="file" id="upload" accept="image/*" />
-  <br />
-  <canvas id="canvas"></canvas>
+  <head>
+    <meta charset="UTF-8" />
+    <title>OpenCV.js Face Detection</title>
+    <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Face Detection with OpenCV.js</h2>
+    <input type="file" id="upload" accept="image/*" />
+    <br />
+    <canvas id="canvas"></canvas>
 
-  <script>
-    let cvReady = false;
-    let faceCascade;
+    <script>
+      let cvReady = false;
+      let faceCascade;
 
-    document.getElementById('upload').addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
+      document.getElementById("upload").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
 
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        loadAndDetect(event.target.result);
-      };
-      reader.readAsDataURL(file);
-    });
-
-    function loadAndDetect(imageSrc) {
-      const img = new Image();
-      img.onload = function () {
-        const canvas = document.getElementById('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-
-        if (!cvReady) {
-          alert('OpenCV is not ready yet!');
-          return;
-        }
-
-        let src = cv.imread(canvas);
-        let gray = new cv.Mat();
-        cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
-
-        let faces = new cv.RectVector();
-        let msize = new cv.Size(0, 0);
-
-        faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, msize, msize);
-
-        for (let i = 0; i < faces.size(); ++i) {
-          let face = faces.get(i);
-          ctx.lineWidth = 2;
-          ctx.strokeStyle = 'red';
-          ctx.strokeRect(face.x, face.y, face.width, face.height);
-        }
-
-        src.delete();
-        gray.delete();
-        faces.delete();
-      };
-      img.src = imageSrc;
-    }
-
-    // Load the classifier after OpenCV is ready
-    function onOpenCvReady() {
-      cvReady = true;
-      faceCascade = new cv.CascadeClassifier();
-      // Load pre-trained face cascade from a URL
-      let utils = new Utils('errorMessage');
-      let faceCascadeFile = 'haarcascade_frontalface_default.xml';
-      utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
-        faceCascade.load(faceCascadeFile);
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          loadAndDetect(event.target.result);
+        };
+        reader.readAsDataURL(file);
       });
-    }
-  </script>
-  <div id="errorMessage"></div>
-  <script src="https://docs.opencv.org/4.x/utils.js"></script>
-  <script>cv['onRuntimeInitialized']=onOpenCvReady;</script>
-</body>
+
+      function loadAndDetect(imageSrc) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.getElementById("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+
+          if (!cvReady) {
+            alert("OpenCV is not ready yet!");
+            return;
+          }
+
+          let src = cv.imread(canvas);
+          let gray = new cv.Mat();
+          cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+
+          let faces = new cv.RectVector();
+          let msize = new cv.Size(0, 0);
+
+          faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, msize, msize);
+
+          for (let i = 0; i < faces.size(); ++i) {
+            let face = faces.get(i);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = "red";
+            ctx.strokeRect(face.x, face.y, face.width, face.height);
+          }
+
+          src.delete();
+          gray.delete();
+          faces.delete();
+        };
+        img.src = imageSrc;
+      }
+
+      // Load the classifier after OpenCV is ready
+      function onOpenCvReady() {
+        cvReady = true;
+        faceCascade = new cv.CascadeClassifier();
+        // Load pre-trained face cascade from a URL
+        let utils = new Utils("errorMessage");
+        let faceCascadeFile = "haarcascade_frontalface_default.xml";
+        utils.createFileFromUrl(faceCascadeFile, faceCascadeFile, () => {
+          faceCascade.load(faceCascadeFile);
+        });
+      }
+    </script>
+    <div id="errorMessage"></div>
+    <script src="https://docs.opencv.org/4.x/utils.js"></script>
+    <script>
+      cv["onRuntimeInitialized"] = onOpenCvReady;
+    </script>
+  </body>
 </html>
 ```
 
@@ -324,7 +330,7 @@ Feel free to explore and combine these!
   https://github.com/opencv/opencv
 
 - **WebAssembly (WASM) Explained:**  
-  https://webassembly.org/docs/
+  https://webassembly.org/
 
 ---
 
