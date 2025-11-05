@@ -1,7 +1,7 @@
 ---
-title: 'Building a Personal Brand as a Developer'
-pubDate: 'Nov 5 2025'
-description: 'Using GitHub, blogging, and social media to showcase your skills.'
+title: "Building a Personal Brand as a Developer"
+pubDate: "Nov 5 2025"
+description: "Using GitHub, blogging, and social media to showcase your skills."
 ---
 
 # Building a Personal Brand as a Developer: Your Guide to Showcasing Skills with GitHub, Blogging, and Social Media
@@ -53,11 +53,13 @@ Here’s a simple example of a README snippet:
 A React app that fetches weather data from the OpenWeatherMap API. Features include current weather, 5-day forecast, and user location detection.
 
 ## Tech stack
+
 - React
 - Axios
 - OpenWeatherMap API
 
 ## How to run
+
 1. Clone the repo
 2. Run `npm install`
 3. Run `npm start`
@@ -112,13 +114,15 @@ For example, a quick post on JavaScript array methods might look like:
 # Understanding JavaScript Array.map() with Examples
 
 `map()` is a powerful method to transform arrays.
+```
 
 ```js
 const numbers = [1, 2, 3];
-const doubled = numbers.map(n => n * 2);
+const doubled = numbers.map((n) => n * 2);
 console.log(doubled); // [2, 4, 6]
 ```
 
+```markdown
 It creates a new array by applying a function to each element.
 ```
 
@@ -191,7 +195,7 @@ Building a personal brand as a developer isn’t about vanity or flashy marketin
 
 Start small. Push your code on GitHub regularly. Write about what you learn, even if it’s a short post. Share your progress and insights on social media. Over time, this consistent, authentic presence will build your reputation and open doors you didn’t even know existed.
 
-Remember: Your code *and* your voice matter. So get out there, show your work, and connect with the community. You’ve got this! 🚀
+Remember: Your code _and_ your voice matter. So get out there, show your work, and connect with the community. You’ve got this! 🚀
 
 ---
 
