@@ -1,0 +1,73 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={`404 — Page Not Found`} description={`The page you are looking for does not exist.`} />
+    <style>
+      .container {
+        max-width: 900px;
+        margin: 6rem auto 4rem;
+        padding: 2rem;
+        text-align: center;
+        color: rgba(var(--gray-dark), 0.92);
+      }
+      .code {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        color: var(--primary-dark);
+        margin: 0 0 0.5rem 0;
+      }
+      .message {
+        font-size: 1.125rem;
+        margin: 0.5rem 0 1.5rem 0;
+        color: rgba(var(--gray-dark), 0.75);
+      }
+      .actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+      }
+      .btn {
+        padding: 0.75rem 1.25rem;
+        border-radius: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        color: white;
+        background: linear-gradient(90deg, var(--accent), var(--secondary));
+        box-shadow: 0 8px 24px rgba(var(--accent), 0.12);
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+      }
+      .btn.secondary {
+        background: transparent;
+        color: rgba(var(--gray-dark), 0.9);
+        border: 1px solid rgba(var(--purple-200), 0.4);
+        box-shadow: none;
+      }
+      .btn:hover { transform: translateY(-3px); }
+      @media (max-width: 640px) {
+        .container { margin: 4rem 1rem; }
+        .code { font-size: 4rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="container">
+        <div class="code">404</div>
+        <h1>Page not found</h1>
+        <p class="message">We couldn't find the page you're looking for. It may have been moved or removed.</p>
+        <div class="actions">
+          <a class="btn" href="/">Go to Home</a>
+          <a class="btn secondary" href="/blog">Browse Blog</a>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
